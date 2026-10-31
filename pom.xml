@@ -704,12 +704,6 @@
             <version>${cas-client-support-springboot.version}</version>
         </dependency>
 
-            <!-- For JUnit -->
-            <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!-- For Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
