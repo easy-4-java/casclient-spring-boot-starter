@@ -11,21 +11,21 @@ import org.apereo.cas.spring.boot.property.CasErrorProperties;
 import org.apereo.cas.spring.boot.property.CasSsoProperties;
 import org.apereo.cas.spring.boot.property.CasTicketProperties;
 import org.apereo.cas.spring.boot.property.CasWrapperProperties;
-import org.jasig.cas.client.authentication.AuthenticationFilter;
-import org.jasig.cas.client.authentication.GatewayResolver;
-import org.jasig.cas.client.authentication.Saml11AuthenticationFilter;
-import org.jasig.cas.client.authentication.UrlPatternMatcherStrategy;
-import org.jasig.cas.client.configuration.ConfigurationKeys;
-import org.jasig.cas.client.session.SingleSignOutFilter;
-import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
-import org.jasig.cas.client.util.AssertionThreadLocalFilter;
-import org.jasig.cas.client.util.ErrorRedirectFilter;
-import org.jasig.cas.client.util.HttpServletRequestWrapperFilter;
-import org.jasig.cas.client.validation.AbstractTicketValidationFilter;
-import org.jasig.cas.client.validation.Cas10TicketValidationFilter;
-import org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter;
-import org.jasig.cas.client.validation.Cas30ProxyReceivingTicketValidationFilter;
-import org.jasig.cas.client.validation.Saml11TicketValidationFilter;
+import org.apereo.cas.client.authentication.AuthenticationFilter;
+import org.apereo.cas.client.authentication.GatewayResolver;
+import org.apereo.cas.client.authentication.Saml11AuthenticationFilter;
+import org.apereo.cas.client.authentication.UrlPatternMatcherStrategy;
+import org.apereo.cas.client.configuration.ConfigurationKeys;
+import org.apereo.cas.client.session.SingleSignOutFilter;
+import org.apereo.cas.client.session.SingleSignOutHttpSessionListener;
+import org.apereo.cas.client.util.AssertionThreadLocalFilter;
+import org.apereo.cas.client.util.ErrorRedirectFilter;
+import org.apereo.cas.client.util.HttpServletRequestWrapperFilter;
+import org.apereo.cas.client.validation.AbstractTicketValidationFilter;
+import org.apereo.cas.client.validation.Cas10TicketValidationFilter;
+import org.apereo.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter;
+import org.apereo.cas.client.validation.Cas30ProxyReceivingTicketValidationFilter;
+import org.apereo.cas.client.validation.Saml11TicketValidationFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -33,13 +33,14 @@ import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.util.StringUtils;
 
-@Configuration
+@AutoConfiguration
 @ConditionalOnClass(AuthenticationFilter.class)
 @ConditionalOnProperty(prefix = CasProperties.PREFIX, value = "enabled", havingValue = "true")
-@EnableConfigurationProperties({ CasProperties.class })
+@EnableConfigurationProperties({ CasProperties.class, CasAssertionProperties.class, CasAuthcProperties.class,
+		CasErrorProperties.class, CasSsoProperties.class, CasTicketProperties.class, CasWrapperProperties.class })
 public class CasFilterAutoConfiguration {
 	
 	/*
@@ -121,7 +122,8 @@ public class CasFilterAutoConfiguration {
 		if(CasProtocol.CAS10.equals(casProperties.getProtocol())) {
 			filterRegistration.setFilter(new Cas10TicketValidationFilter());
 		}
-		else if(CasProtocol.CAS20_PROXY.equals(casProperties.getProtocol())) {
+		else if(CasProtocol.CAS20.equals(casProperties.getProtocol())
+				|| CasProtocol.CAS20_PROXY.equals(casProperties.getProtocol())) {
 			
 			filterRegistration.setFilter(new Cas20ProxyReceivingTicketValidationFilter());
 			
@@ -178,7 +180,8 @@ public class CasFilterAutoConfiguration {
 			filterRegistration.addInitParameter(ConfigurationKeys.TOLERANCE.getName(), Long.toString(casTicketProperties.getTolerance()));
 			
 		}
-		else if(CasProtocol.CAS30_PROXY.equals(casProperties.getProtocol())) {
+		else if(CasProtocol.CAS30.equals(casProperties.getProtocol())
+				|| CasProtocol.CAS30_PROXY.equals(casProperties.getProtocol())) {
 			filterRegistration.setFilter(new Cas30ProxyReceivingTicketValidationFilter());
 		}
 		else if(CasProtocol.SAML.equals(casProperties.getProtocol())) {
@@ -278,7 +281,7 @@ public class CasFilterAutoConfiguration {
 
 	/*
 	 * 	CAS Assertion Thread Local Filter
-	 * 	该过滤器使得可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。
+	 * 	该过滤器使得可以通过org.apereo.cas.client.util.AssertionHolder来获取用户的登录名。
 	 * 	比如AssertionHolder.getAssertion().getPrincipal().getName()。
 	 * 	这个类把Assertion信息放在ThreadLocal变量中，这样应用程序不在web层也能够获取到当前登录信息
 	 */

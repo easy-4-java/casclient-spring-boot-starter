@@ -478,7 +478,8 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <cas-client.version>3.6.1</cas-client.version>
+        <cas-client.version>4.0.4</cas-client.version>
+        <legacy-cas-client.version>3.6.1</legacy-cas-client.version>
         <maven.version>3.0</maven.version>
            <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
@@ -486,12 +487,12 @@
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <woodstox-asl.version>4.4.1</woodstox-asl.version>
-                <cas-client-support-springboot.version>3.6.1</cas-client-support-springboot.version>
+                <cas-client-support-springboot.version>4.0.4</cas-client-support-springboot.version>
                 <commons-io.version>2.22.0</commons-io.version>
-                <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+                <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
                 <junit.version>4.13.2</junit.version>
                 <slf4j.version>2.0.18</slf4j.version>
     </properties>
@@ -507,25 +508,25 @@
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-core -->
             <dependency>
-                <groupId>org.jasig.cas.client</groupId>
+                <groupId>org.apereo.cas.client</groupId>
                 <artifactId>cas-client-core</artifactId>
                 <version>${cas-client.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-saml -->
             <dependency>
-                <groupId>org.jasig.cas.client</groupId>
+                <groupId>org.apereo.cas.client</groupId>
                 <artifactId>cas-client-support-saml</artifactId>
                 <version>${cas-client.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-distributed-memcached -->
             <dependency>
-                <groupId>org.jasig.cas.client</groupId>
+                <groupId>org.apereo.cas.client</groupId>
                 <artifactId>cas-client-support-distributed-memcached</artifactId>
                 <version>${cas-client.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-distributed-ehcache -->
             <dependency>
-                <groupId>org.jasig.cas.client</groupId>
+                <groupId>org.apereo.cas.client</groupId>
                 <artifactId>cas-client-support-distributed-ehcache</artifactId>
                 <version>${cas-client.version}</version>
             </dependency>
@@ -533,42 +534,42 @@
             <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-jboss</artifactId>
-                <version>${cas-client.version}</version>
+                <version>${legacy-cas-client.version}</version>
             </dependency> 
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-integration-jetty -->
             <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-jetty</artifactId>
-               <version>${cas-client.version}</version>
+               <version>${legacy-cas-client.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-integration-tomcat-v6 -->
             <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-tomcat-v6</artifactId>
-                <version>${cas-client.version}</version>
+                <version>${legacy-cas-client.version}</version>
             </dependency> 
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-integration-tomcat-v7 -->
             <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-tomcat-v7</artifactId>
-                <version>${cas-client.version}</version>
+                <version>${legacy-cas-client.version}</version>
             </dependency>
              <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-integration-tomcat-v8 -->
              <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-tomcat-v8</artifactId>
-                <version>${cas-client.version}</version>
+                <version>${legacy-cas-client.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-integration-tomcat-v85 -->
             <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-integration-tomcat-v85</artifactId>
-                <version>${cas-client.version}</version>
+                <version>${legacy-cas-client.version}</version>
             </dependency>
                 <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet-api.version}</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet-api.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -583,7 +584,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-support-springboot</artifactId>
             <version>${cas-client-support-springboot.version}</version>
         </dependency>
@@ -615,9 +616,9 @@
         <!-- Java Servlet API -->
         <!-- For Servlet Api -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${javax.servlet-api.version}</version>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet-api.version}</version>
             <optional>true</optional>
         </dependency>
 
@@ -675,41 +676,35 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-core -->
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-core</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-saml -->
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-support-saml</artifactId>
             <optional>true</optional>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-distributed-memcached -->
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-support-distributed-memcached</artifactId>
             <optional>true</optional>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-distributed-ehcache -->
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-support-distributed-ehcache</artifactId>
             <optional>true</optional>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.jasig.cas.client/cas-client-support-springboot -->
         <dependency>
-            <groupId>org.jasig.cas.client</groupId>
+            <groupId>org.apereo.cas.client</groupId>
             <artifactId>cas-client-support-springboot</artifactId>
             <version>${cas-client-support-springboot.version}</version>
         </dependency>
 
-            <!-- For JUnit -->
-            <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!-- For Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
