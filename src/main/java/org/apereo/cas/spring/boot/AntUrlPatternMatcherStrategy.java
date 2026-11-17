@@ -15,7 +15,7 @@
  */
 package org.apereo.cas.spring.boot;
 
-import org.jasig.cas.client.authentication.UrlPatternMatcherStrategy;
+import org.apereo.cas.client.authentication.UrlPatternMatcherStrategy;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 
