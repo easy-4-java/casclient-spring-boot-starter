@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.apereo.cas.spring.boot.CasclientAutoConfiguration
+org.apereo.cas.spring.boot.CasBaseAutoConfiguration,\
+org.apereo.cas.spring.boot.CasFilterAutoConfiguration
