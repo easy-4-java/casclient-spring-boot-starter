@@ -1,23 +1,23 @@
 package org.apereo.cas.spring.boot;
 
-import org.jasig.cas.client.authentication.AuthenticationFilter;
-import org.jasig.cas.client.authentication.AuthenticationRedirectStrategy;
-import org.jasig.cas.client.authentication.DefaultAuthenticationRedirectStrategy;
-import org.jasig.cas.client.authentication.DefaultGatewayResolverImpl;
-import org.jasig.cas.client.authentication.GatewayResolver;
-import org.jasig.cas.client.authentication.UrlPatternMatcherStrategy;
-import org.jasig.cas.client.proxy.ProxyGrantingTicketStorage;
-import org.jasig.cas.client.proxy.ProxyGrantingTicketStorageImpl;
-import org.jasig.cas.client.session.HashMapBackedSessionMappingStorage;
-import org.jasig.cas.client.session.SessionMappingStorage;
+import org.apereo.cas.client.authentication.AuthenticationFilter;
+import org.apereo.cas.client.authentication.AuthenticationRedirectStrategy;
+import org.apereo.cas.client.authentication.DefaultAuthenticationRedirectStrategy;
+import org.apereo.cas.client.authentication.DefaultGatewayResolverImpl;
+import org.apereo.cas.client.authentication.GatewayResolver;
+import org.apereo.cas.client.authentication.UrlPatternMatcherStrategy;
+import org.apereo.cas.client.proxy.ProxyGrantingTicketStorage;
+import org.apereo.cas.client.proxy.ProxyGrantingTicketStorageImpl;
+import org.apereo.cas.client.session.HashMapBackedSessionMappingStorage;
+import org.apereo.cas.client.session.SessionMappingStorage;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 
-@Configuration
+@AutoConfiguration
 @ConditionalOnClass(AuthenticationFilter.class)
 @ConditionalOnProperty(prefix = CasProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties({ CasProperties.class })

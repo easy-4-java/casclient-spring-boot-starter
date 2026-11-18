@@ -15,7 +15,7 @@
  */
 package org.apereo.cas.spring.boot;
 
-import org.jasig.cas.client.proxy.ProxyGrantingTicketStorageImpl;
+import org.apereo.cas.client.proxy.ProxyGrantingTicketStorageImpl;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;

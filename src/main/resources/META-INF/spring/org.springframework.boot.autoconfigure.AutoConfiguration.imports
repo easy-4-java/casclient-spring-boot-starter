@@ -1,0 +1,2 @@
+org.apereo.cas.spring.boot.CasBaseAutoConfiguration
+org.apereo.cas.spring.boot.CasFilterAutoConfiguration
